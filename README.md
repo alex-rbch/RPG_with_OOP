@@ -60,4 +60,4 @@ There are numerous details I added to my project. The most notable features are 
   <img src="https://user-images.githubusercontent.com/42875258/146492106-53e4b4e7-1f66-4e3e-a3a0-dd8dc397081b.gif" width="300">
 </p>
 
-In conclusion, I noticed that within the paradigms of the OOP there is almost nothing I could not achieve in a reasonable time. Thus, correct Object-Oriented Design is a powerful tool that supports stable and robust coding practices.
+In conclusion, I experienced that within the paradigms of the OOP there is almost nothing I could not achieve in a reasonable time. Thus, correct Object-Oriented Design is a powerful tool that supports stable and robust coding practices.

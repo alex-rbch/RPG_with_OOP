@@ -4,15 +4,17 @@ This semester (Fall 2021), I completed a course in Object-Oriented Programming. 
 
 ## Project History and Goals
 
-The project I worked on included refactoring the provided code in accordance with the SOLID principles of OOP and significantly extending the interface of the program. Overall, I wrote more than 1000 code lines to create this relatively simple game. Although the visual component of this project might lack certain finesse, the structure of the underlying code was scrupulously fitted to satisfy the conventions of the Object-Oriented Design. 
+The project I worked on included refactoring the provided code in accordance with the SOLID principles of OOP and significantly extending the interface of the program. Overall, I wrote more than 1000 code lines to create this relatively simple game.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/42875258/146490592-fccd13f0-51bb-4def-a7a6-bdd764a0b179.gif" width="525">
 </p>
- 
-To demonstrate what I have learned this semester, I aimed for my program to include several design patterns. 
+
+Although the visual component of this project might lack certain finesse, the structure of the underlying code was scrupulously fitted to satisfy the conventions of the Object-Oriented Design. 
 
 ## Design patterns
+To demonstrate what I have learned this semester, I aimed for my program to include several design patterns. 
+
 **1. Chain of responsibility** 
 
 <p align="center">
@@ -21,17 +23,17 @@ To demonstrate what I have learned this semester, I aimed for my program to incl
  
 ScreenEngine.py contains all visual elements of the game, including GameSurface, ProgressBar (at the bottom), InfoWindow (on the left), MiniMap, and interface for HelpWindow and StatusWindow. In Main.py, they are sequenced into the *Chain of Responsibility* which handles the drawing aspect.
   
-**2. Abstract factory**
+**2. Observer**
+
+Logic.py contains GameEngine, which handles the game session and acts as an *Observer*, which can be notified to update the InfoWindow.
+  
+**3. Abstract factory**
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/42875258/146493778-8317a41e-7cb2-46fb-b0b4-38e7a94b21bf.png" width="525">
 </p>
   
 Service.py contains MapFactory class which supports several map classes as an *Abstract Factory*.
-  
-**3. Observer**
-
-Logic.py contains GameEngine, which handles the game session and acts as an *Observer*, which can be notified to update the InfoWindow.
   
 **4. Decorator** 
 

@@ -2,6 +2,14 @@
 
 This semester (Fall 2021), I completed a course in Object-Oriented Programming. The topics I had a chance to explore range from basic paradigms of OOP and abstract classes to advanced design patterns. I expect that this experience will make my future code far more functional, reliable, practical, efficient, maintainable, and hopefully eye-pleasing.
 
+## Instructions
+
+1. You play as a medieval knight traveling through a multi-level dungeon full of dreadful enemies and occasionally helpful allies.
+2. Run the `Main.py` file to launch the game.
+3. Press `H` to see the help window.
+4. Press `P` to pause the game.
+5. And more importantly, have fun!
+
 ## Project History and Goals
 
 The project I worked on included refactoring the provided code in accordance with the SOLID principles of OOP and significantly extending the interface of the program. Overall, I wrote more than 1000 code lines to create this relatively simple game.

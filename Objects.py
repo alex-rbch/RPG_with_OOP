@@ -208,4 +208,3 @@ class MagicBow(Effect):
     def apply_effect(self):
         self.stats["strength"] += 20
         self.stats["luck"] += 5
-

@@ -31,10 +31,6 @@ Service.py contains MapFactory class which supports several map classes as an *A
   
 **3. Observer**
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/42875258/146488322-15748c58-9e4c-4023-b538-0325d3e3d035.png" width="200">
-</p>
-  
 Logic.py contains GameEngine, which handles the game session and acts as an *Observer*, which can be notified to update the InfoWindow.
   
 **4. Decorator** 

@@ -41,7 +41,7 @@ Service.py contains MapFactory class which supports several map classes as an *A
   <img src="https://user-images.githubusercontent.com/42875258/146488326-e8a6937a-06d5-443e-a067-3c87e78d0111.png" width="525">
 </p>
   
-*Decorator* pattern is used to implement Effects (Pickpocket, Blessing, MagicBow, Weakness, Berserk) that can be applied and removed by Allies and Enemies.
+*Decorator* pattern is used to implement Effects (Pickpocket, Blessing, MagicBow, Weakness, Berserk) that can be applied on Hero and removed by Allies and Enemies.
   
 ## Other improvements
 

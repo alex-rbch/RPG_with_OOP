@@ -122,8 +122,8 @@ while engine.working:
                             new_index = int(re.search('\d+', f).group())
                             index = max(index, new_index + 1)
 
-                    # rect = pygame.Rect(0, 0, 800, 600)
-                    rect = pygame.Rect(640, 480, 160, 120)
+                    rect = pygame.Rect(0, 0, 800, 600)
+                    # rect = pygame.Rect(640, 480, 160, 120)
                     sub = gameDisplay.subsurface(rect)
                     pygame.image.save(sub, os.path.join(folder, f'screenshot{index:03d}.png'))
     else:

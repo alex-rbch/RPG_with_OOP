@@ -13,7 +13,7 @@ The project I worked on included refactoring the provided code in accordance wit
 Although the visual component of this project might lack certain finesse, the structure of the underlying code was scrupulously fitted to satisfy the conventions of the Object-Oriented Design. 
 
 ## Design patterns
-To demonstrate what I have learned this semester, I aimed for my program to include several design patterns. 
+To demonstrate what I have learned this semester, I aimed for my program to exploit several design patterns. 
 
 **1. Chain of responsibility** 
 

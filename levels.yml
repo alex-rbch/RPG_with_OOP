@@ -1,0 +1,16 @@
+levels:
+  - !empty_map {}
+  - !special_map
+    rat: 50
+    ghoul: 25
+  - !special_map
+    rat: 10
+    knight: 20
+    shovel_knight: 20
+  - !special_map
+    rat: 10
+    knight: 10
+    shovel_knight: 5
+    dragon: 20
+  - !random_map {}
+  - !end_map {}

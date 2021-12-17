@@ -1,14 +1,14 @@
 import pygame
 import os
 import Objects
-import ScreenEngine as SE
+import ScreenEngine as Se
 import Logic
 import Service
-import os
 import re
 
 
 SCREEN_DIM = (800, 600)
+hero, engine, drawer, iteration = [None] * 4
 
 pygame.init()
 gameDisplay = pygame.display.set_mode(SCREEN_DIM)
@@ -36,16 +36,25 @@ def create_game(sprite_size, is_new):
         engine = Logic.GameEngine()
         Service.service_init(sprite_size)
         Service.reload_game(engine, hero)
-        drawer = SE.GameSurface((640, 480), pygame.SRCALPHA, (640, 480),
-                                SE.MiniMap((160, 120), (0, 480),
-                                    SE.ProgressBar((640, 120), (640, 0),
-                                        SE.InfoWindow((160, 480), (50, 50),
-                                            SE.StatusWindow((700, 500), pygame.SRCALPHA, (50, 50),
-                                                SE.HelpWindow((700, 500), pygame.SRCALPHA, (0, 0),
-                                                        SE.ScreenHandle(
-                                                            (0, 0)
-                                                        )))))))
-
+        drawer = Se.GameSurface((640, 480), pygame.SRCALPHA, (640, 480),
+                                Se.MiniMap(
+                                    (160, 120),
+                                    (0, 480),
+                                    Se.ProgressBar(
+                                        (640, 120),
+                                        (640, 0),
+                                        Se.InfoWindow(
+                                            (160, 480),
+                                            (50, 50),
+                                            Se.StatusWindow(
+                                                (700, 500),
+                                                pygame.SRCALPHA,
+                                                (50, 50),
+                                                Se.HelpWindow(
+                                                    (700, 500),
+                                                    pygame.SRCALPHA,
+                                                    (0, 0),
+                                                    Se.ScreenHandle((0, 0))))))))
     else:
         engine.sprite_size = sprite_size
         hero.sprite = Service.create_sprite(
@@ -107,7 +116,7 @@ while engine.working:
                         iteration += 1
                 else:
                     if event.key == pygame.K_RETURN:
-                        create_game()
+                        create_game(size, True)
 
                 if event.key == pygame.K_PRINT:
                     # save a screenshot with the PRINT key
@@ -117,9 +126,9 @@ while engine.working:
 
                     index = 0
                     for f in os.listdir(folder):
-                        match = re.match('screenshot\d+.png', f)
+                        match = re.match(r'screenshot\d+.png', f)
                         if match:
-                            new_index = int(re.search('\d+', f).group())
+                            new_index = int(re.search(r'\d+', f).group())
                             index = max(index, new_index + 1)
 
                     rect = pygame.Rect(0, 0, 800, 600)
@@ -130,7 +139,7 @@ while engine.working:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 engine.working = False
-        if engine.game_process == "ON":
+        if engine.game_process in ["ON", "PAUSE"]:
             actions = [
                 engine.move_right,
                 engine.move_left,
@@ -144,7 +153,7 @@ while engine.working:
             reward = engine.score - prev_score
             print(reward)
         else:
-            create_game()
+            create_game(size, True)
 
     gameDisplay.blit(drawer, (0, 0))
     drawer.draw(gameDisplay)

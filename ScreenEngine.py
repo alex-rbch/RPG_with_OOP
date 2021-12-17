@@ -2,7 +2,6 @@ import pygame
 import collections
 import Service
 import Objects
-import math
 
 colors = {
     "black": (0, 0, 0, 255),
@@ -29,6 +28,7 @@ class ScreenHandle(pygame.Surface):
             self.next_coord = (0, 0)
         super().__init__(*args, **kwargs)
         self.fill(colors["wooden"])
+        self.engine = None
 
     def draw(self, canvas):
         if self.successor is not None:
@@ -51,7 +51,13 @@ class GameSurface(ScreenHandle):
 
         draw_x = min(max(0, hero_pos[0] - screen_shape[0] / 2), w - screen_shape[0])
         draw_y = min(max(0, hero_pos[1] - screen_shape[1] / 2), h - screen_shape[1])
+
         return draw_x, draw_y
+
+    def calculate_step(self, value):
+        step = -int((value % 1) * self.engine.sprite_size)
+        value = int(value)
+        return step, value
 
     def connect_engine(self, engine):
         self.engine = engine
@@ -63,8 +69,8 @@ class GameSurface(ScreenHandle):
     def draw_map(self):
         # calculate (min_x, min_y) - left top corner
         min_x, min_y = self.calculate_left_corner()
-        step_x, step_y = -int((min_x % 1) * self.engine.sprite_size), -int((min_y % 1) * self.engine.sprite_size)
-        min_x, min_y = int(min_x), int(min_y)
+        step_x, min_x = self.calculate_step(min_x)
+        step_y, min_y = self.calculate_step(min_y)
 
         if self.engine.map:
             for x in range(len(self.engine.map[0]) - min_x):
@@ -78,22 +84,16 @@ class GameSurface(ScreenHandle):
     def draw_object(self, sprite, coord):
         # calculate (min_x, min_y) - left top corner
         min_x, min_y = self.calculate_left_corner()
-        step_x, step_y = -int((min_x % 1) * self.engine.sprite_size), -int((min_y % 1) * self.engine.sprite_size)
-        min_x, min_y = int(min_x), int(min_y)
+        step_x, min_x = self.calculate_step(min_x)
+        step_y, min_y = self.calculate_step(min_y)
 
         self.blit(sprite, (step_x + (coord[0] - min_x) * self.engine.sprite_size,
                            step_y + (coord[1] - min_y) * self.engine.sprite_size))
 
     def draw(self, canvas):
-        # calculate (min_x, min_y) - left top corner
-        min_x, min_y = self.calculate_left_corner()
-        step_x, step_y = -int((min_x % 1) * self.engine.sprite_size), -int((min_y % 1) * self.engine.sprite_size)
-        min_x, min_y = int(min_x), int(min_y)
-
         self.draw_map()
         for obj in self.engine.objects:
-            self.blit(obj.sprite[0], (step_x + (obj.position[0] - min_x) * self.engine.sprite_size,
-                                      step_y + (obj.position[1] - min_y) * self.engine.sprite_size))
+            self.draw_object(obj.sprite[0], obj.position)
         self.draw_hero()
 
         # draw next surface in chain
@@ -220,16 +220,15 @@ class HelpWindow(ScreenHandle):
         if self.engine.show_help:
             alpha = 128
         self.fill((0, 0, 0, alpha))
-        size = self.get_size()
         font1 = pygame.font.SysFont("courier", 24)
         font2 = pygame.font.SysFont("serif", 24)
         if self.engine.show_help:
             pygame.draw.lines(self, (255, 0, 0, 255), True, [
                               (0, 0), (700, 0), (700, 500), (0, 500)], 5)
             for i, text in enumerate(self.data):
-                self.blit(font1.render(text[0], True, ((128, 128, 255))),
+                self.blit(font1.render(text[0], True, (128, 128, 255)),
                           (50, 50 + 30 * i))
-                self.blit(font2.render(text[1], True, ((128, 128, 255))),
+                self.blit(font2.render(text[1], True, (128, 128, 255)),
                           (150, 50 + 30 * i))
 
         # draw next surface in chain
@@ -256,21 +255,20 @@ class StatusWindow(ScreenHandle):
                               (0, 0), (700, 0), (700, 500), (0, 500)], 5)
 
             if self.engine.game_process == "PAUSE":
-                self.blit(font2.render("PAUSE", True, ((128, 128, 255))),
+                self.blit(font2.render("PAUSE", True, (128, 128, 255)),
                           (280, 20))
-                self.blit(font1.render("Press 'P' to pause/continue", True, ((128, 128, 255))),
+                self.blit(font1.render("Press 'P' to pause/continue", True, (128, 128, 255)),
                           (50, 80))
 
             if self.engine.game_process == "OFF":
                 if self.engine.hero.hp <= 0:
-                    self.blit(font2.render("GAME OVER", True, ((128, 128, 255))),
+                    self.blit(font2.render("GAME OVER", True, (128, 128, 255)),
                               (240, 20))
                 else:
-                    self.blit(font2.render("VICTORY", True, ((128, 128, 255))),
+                    self.blit(font2.render("VICTORY", True, (128, 128, 255)),
                               (260, 20))
 
-
-                self.blit(font1.render("Press 'R' to restart", True, ((128, 128, 255))),
+                self.blit(font1.render("Press 'R' to restart", True, (128, 128, 255)),
                           (50, 80))
 
         # draw next surface in chain

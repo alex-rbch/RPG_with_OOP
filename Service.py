@@ -166,7 +166,6 @@ class EndMap(MapFactory):
             self.objects = []
 
         def get_objects(self, _map):
-            h, w = len(_map), len(_map[0])
 
             obj_name = 'stairs'
             prop = object_list_prob['objects'][obj_name]
@@ -201,7 +200,6 @@ class RandomMap(MapFactory):
             self.objects = []
 
         def get_objects(self, _map):
-            h, w = len(_map), len(_map[0])
 
             for obj_name in object_list_prob['objects']:
                 prop = object_list_prob['objects'][obj_name]
@@ -260,8 +258,6 @@ class EmptyMap(MapFactory):
             self.objects = []
 
         def get_objects(self, _map):
-            h, w = len(_map), len(_map[0])
-
             obj_name = 'stairs'
             prop = object_list_prob['objects'][obj_name]
             coord = MapFactory.find_empty_coord(_map, self.objects)

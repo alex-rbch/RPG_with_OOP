@@ -53,7 +53,11 @@ Service.py contains MapFactory class which supports several map classes as an *A
   
 ## Other improvements
 
+There are numerous details I added to my project. The most notable features are *smooth zoom* and a *mini-map*. 
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/42875258/146489050-659ef3d0-e2de-4a65-ae3f-e449afbe2c5d.gif" width="300">
   <img src="https://user-images.githubusercontent.com/42875258/146492106-53e4b4e7-1f66-4e3e-a3a0-dd8dc397081b.gif" width="300">
 </p>
+
+In conclusion, I noticed that within the paradigms of the OOP there is almost nothing I could not achieve. Thus, correct Object-Oriented Design is a powerful tool that supports stable and robust coding practices.

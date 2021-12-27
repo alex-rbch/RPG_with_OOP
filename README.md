@@ -12,7 +12,7 @@ This semester (Fall 2021), I completed a course in Object-Oriented Programming. 
 
 ## Project History and Goals
 
-The project I worked on included refactoring the provided code in accordance with the SOLID principles of OOP and significantly extending the interface of the program. Overall, I wrote more than 1000 code lines to create this relatively simple game.
+The project I worked on included refactoring the provided code in accordance with the SOLID principles and significantly extending the interface of the program. Overall, I wrote more than 1000 code lines to create this relatively simple game.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/42875258/146490592-fccd13f0-51bb-4def-a7a6-bdd764a0b179.gif" width="525">
